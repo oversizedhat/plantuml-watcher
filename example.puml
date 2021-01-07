@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+
+'wraps note and component text
+skinparam wrapWidth 150
+
+Oscar << Human >>
+
+(PlantUML) as puml
+note left of Oscar: Does not get much fancier than this!
+
+Oscar --> puml:likes
+
+@enduml
