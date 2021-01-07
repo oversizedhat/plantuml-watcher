@@ -26,15 +26,15 @@ change: /ws/example.puml
 
 Supports passing along additional flags to the plantuml jar. 
 
-Useful ones like for example:
-**-tsvg** : Generate images using SVG format instead of the default PNG
-**-progress** : Print the duration of complete diagrams processing
-**-verbose** : Have log information
-**-duration** : Print the duration of complete diagrams processing
-**-h[help]** : Will give you the full list. Note that some of them wont work because off headless.
+Useful ones like for example:  
+**-tsvg** : Generate images using SVG format instead of the default PNG.  
+**-progress** : Print the duration of complete diagrams processing.  
+**-verbose** : Have log information.  
+**-duration** : Print the duration of complete diagrams processing.  
+**-h[help]** : Will give you the full list. Note that some of them wont work because off headless.  
 
-And you can add:
-**--draw-on-add** to draw all watched on launch
+And you can add:  
+**--draw-on-add** to draw all watched on launch  
 **--recursive** include subfolders
 
 ##### Advanced usage example
@@ -42,12 +42,14 @@ And you can add:
 $ docker run --rm -ti -v $PWD:/ws -w /ws oscarberg/plantuml-watcher -duration -tsvg --draw-on-add
 ```
 
-And why not go all the way and make an alias in your shell rc file?
+##### And why not go all the way and make an alias in your shell rc file?
 ```
 #.zshrc
 alias plantuml-watcher='docker run --rm -ti -v $PWD:/ws -w /ws oscarberg/plantuml-watcher'
 ```
+Note the single quote. If you use double quote the substition will happen at the time of the alias declaration.
 
+And now finally..
 ```
 $ plantuml-watcher
 ******************************************************************
