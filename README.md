@@ -1,14 +1,12 @@
 # plantuml-watcher
 
 ### Why
-PlantUML is neat but comes with some pre-reqs on the environment with the install of GraphViz (and Java). Also the ideal workflow when desiging locally with PlantUML is a bit unclear. There IS a super nice Visual Studio Code plugin for it but it still comes with the environment pre-reqs AS well as the cumbersome pressing of Alt-D (or was it Ctrl-D??) to get the preview. For other IDE's I bet there are similar plugins leaving the same nasty taste of dissatisfaction...
-
-This totally horrible situation has a quick remedy! (read on)
+PlantUML is neat but comes with some pre-reqs on the environment with the install of GraphViz (and Java). Also the ideal workflow when desiging locally with PlantUML is a bit unclear. This image is meant to be started in a local dev environment and it uses a file watcher to render/re-render diagrams when they are modified. It could also be used in a CI chain.
 
 #### Usage
-Initialize a file watcher from any folder.
+Initialize a file watcher from any directory.
 ```
-$ docker run --rm -ti -v $PWD:/ws -w /ws oscarberg/plantuml-watcher
+$ docker run --rm -ti -v ${PWD}:/ws -w /ws oscarberg/plantuml-watcher
 ******************************************************************
 plantuml-watcher watching for changes in .puml and .plantuml files
 plantuml args: []
@@ -39,15 +37,25 @@ And you can add:
 
 ##### Advanced usage example
 ```
-$ docker run --rm -ti -v $PWD:/ws -w /ws oscarberg/plantuml-watcher -duration -tsvg --draw-on-add
+$ docker run --rm -ti -v ${PWD}:/ws -w /ws oscarberg/plantuml-watcher -duration -tsvg --draw-on-add --recursive
 ```
 
-##### And why not go all the way and make an alias in your shell rc file?
+*Important note!* In some environments (at least **Windows**) docker volume mounts and file watching is not a perfect match. So if the file watching does not appear to be working it is possible to enable the file watcher (chokidar) to use polling.
+
+```
+# Windows CMD
+$ docker run --rm -ti -v %cd%:/ws -e CHOKIDAR_USEPOLLING=true -w /ws oscarberg/plantuml-watcher
+
+# Windows Powershell
+$ docker run --rm -ti -v ${PWD}:/ws -e CHOKIDAR_USEPOLLING=true -w /ws oscarberg/plantuml-watcher
+```
+
+##### Why not go all the way and make an alias in your shell rc file?
 ```
 #.zshrc
-alias plantuml-watcher='docker run --rm -ti -v $PWD:/ws -w /ws oscarberg/plantuml-watcher'
+alias plantuml-watcher='docker run --rm -ti -v ${PWD}:/ws -w /ws oscarberg/plantuml-watcher'
 ```
-Note the single quote. If you use double quote the substition will happen at the time of the alias declaration.
+Note the single quote. If you use double quote the PWD substition will happen at the time of the alias declaration.
 
 And now finally..
 ```
