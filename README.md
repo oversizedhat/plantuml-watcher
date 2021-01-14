@@ -18,7 +18,7 @@ It will wait for changes in plantuml files (.puml or .plantuml). Any change will
 change: /ws/example.puml
  > draw: /ws/example.puml
 ```
-![Fancy diagram](https://raw.githubusercontent.com/oversizedhat/plantuml-watcher/main/Example image.png)
+![Fancy diagram](https://raw.githubusercontent.com/oversizedhat/plantuml-watcher/main/Example%20diagram.png)
 
 ##### Advanced usage
 
