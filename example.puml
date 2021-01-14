@@ -1,4 +1,4 @@
-@startuml
+@startuml Example diagram
 left to right direction
 
 'wraps note and component text
